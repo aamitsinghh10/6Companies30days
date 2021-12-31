@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool isRectangleOverlap(vector<int>& rec1, vector<int>& rec2) 
+    {
+        int a=rec1[0];
+        int b=rec1[1];
+        int c=rec1[2];
+        int d=rec1[3];
+        
+        int A=rec2[0];
+        int B=rec2[1];
+        int C=rec2[2];
+        int D=rec2[3];
+        
+        while((a<c && b<d)&&(c>A && d>B)&&(A<C && B<D)&&(a<C && b<D))
+        {
+            return true;
+        }
+        return  false;
+    }
+};
