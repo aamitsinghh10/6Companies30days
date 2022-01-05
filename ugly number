@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int nthUglyNumber(int n) 
+    {
+        int i2=0,i3=0,i5=0;//initialiaze with 3 pointers with each having 0 values
+        int nm2=2,nm3=3,nm5=5;//next multiple values of 2,3 and 5
+        //nm2=ugly[0]*2=2, nm3=ugly[0]*3=3, nm5=ugly[0]*5=5 and here ugly[0] is 1
+        
+        int ugly[n];//dp array
+        
+        ugly[0]=1;//1 is ugly no which is not divisible by 2,3,5(exception-So always included)
+        int next_ugly_no=1;// basically it is ugly[0]=1
+        
+        for(int i=1;i<n;i++)//iterating from i=1 to n-1
+        {
+            next_ugly_no=min(nm2,min(nm3,nm5));//finding minimum of updated(next multiples of 2,3 and 5)
+            ugly[i]=next_ugly_no;//store min value in the dp array
+            
+            if(next_ugly_no==nm2)//when next multiple of 2 is equal to next ugly number
+            {
+                i2+=1;
+                nm2=ugly[i2]*2;
+            }
+            if(next_ugly_no==nm3)//when next multiple of 3 is equal to next ugly number
+            {
+                i3+=1;
+                nm3=ugly[i3]*3;
+            }
+            if(next_ugly_no==nm5)//when next multiple oof 5 is equal to next ugly number
+            {
+                i5+=1;
+                nm5=ugly[i5]*5;
+            }
+        }
+        return next_ugly_no;//return nth ugly number value from dp array
+    }
+};
