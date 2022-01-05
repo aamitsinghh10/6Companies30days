@@ -1,0 +1,33 @@
+  string printMinNumberForPattern(string S)
+    {
+        stack<int> st;
+        int number=1;
+        
+        for(int i=0;i<S.size();i++)
+        {
+            char ch=S[i];
+            
+            if(ch=='D')
+            {
+                st.push(number);
+                number++;
+            }
+            else
+            {
+                st.push(number);
+                number++;
+                
+                while(st.size()>0)
+                {
+                    cout<<st.top();
+                    st.pop();
+                }
+            }
+        }
+        st.push(number);
+        while(st.size()>0)
+        {
+            cout<<st.top();
+            st.pop();
+        }
+    }
