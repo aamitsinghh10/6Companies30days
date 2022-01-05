@@ -1,0 +1,32 @@
+   bool canPair(vector<int> nums, int k)
+    {
+          if(nums.size()%2==1)
+            return false;
+        
+        unordered_map<int,int> mp;
+         
+         for(int i=0;i<nums.size();i++)
+         {
+             int rem=((nums[i]%k)+k)%k;//to handle negative cases
+             
+             mp[rem]++;
+         }
+         for(int i=0;i<nums.size();i++)
+         {
+             int rem=((nums[i]%k)+k)%k;
+             
+             if(2*rem==k)//when remainder is half of k
+             {
+                 if(mp[rem]%2!=0)//check in map whether it is divisible by 2 or not
+                     return false;
+             }
+             else if(rem==0)//when rem is 0
+             {
+                 if(mp[rem]%2==1)
+                     return false;
+             }
+             else if(mp[rem]!=mp[k-rem])
+                 return false;
+         }
+         return true;
+    }
